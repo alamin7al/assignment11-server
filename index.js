@@ -49,7 +49,7 @@ async function run() {
             // console.log(result);
             res.send(result)
         });
-        
+        //http://stormy-coast-94004.herokuapp.com/toursist
         //order
         app.post('/traveldata', async (req, res) => {
             const order = req.body
@@ -81,15 +81,7 @@ async function run() {
             res.send(result)
         })
 
-        //myorder id
-        // app.get('/myorderdata/:id', async (req, res) => {
-        //     const user = req.params.id
-        //     console.log(user);
-        //     const quarry = { _id: ObjectId(user) }
-        //     const result = await tourCollection.findOne(quarry)
-        //     console.log(result);
-        //     res.send(result)
-        // })
+       
 
         //delet product
         app.delete('/productD/:id', async (req, res) => {
@@ -98,6 +90,13 @@ async function run() {
            
             const deleting = await dataCollection.deleteOne(quarry)
             res.send(deleting)
+          
+        })
+        app.delete('/singledatadelet/:id', async (req, res) => {
+           const id=req.params.id
+           const quarry={_id:ObjectId(id)}
+           const deleteData=await dataCollection.deleteOne(quarry)
+           res.send(deleteData)
           
         })
         //orders
